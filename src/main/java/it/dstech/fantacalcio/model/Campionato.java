@@ -10,8 +10,8 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name="campionato")
-public class Campionato {
+@Entity(name = "campionato")
+public class Campionato extends Base{
 
 	@Column(name="nome_campionato",nullable = false)
 	private String nomeCampionato;

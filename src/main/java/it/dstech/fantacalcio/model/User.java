@@ -14,6 +14,7 @@ public class User  extends Base{
 	@Column (name = "cognome", nullable = false, unique = true)
 	private String cognome;
 	
+
 	@Column (name = "username", nullable = false, unique = true)
 	private String username;
 	

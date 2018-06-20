@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity(name = "user")
@@ -28,6 +32,10 @@ public class User  extends Base{
 	
 	@Enumerated(EnumType.STRING)
 	private UserProfileType profileType;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Squadra squadra;
 
 	public String getNome() {
 		return nome;
@@ -77,5 +85,12 @@ public class User  extends Base{
 		this.profileType = profileType;
 	}
 
-	
+	public Squadra getSquadra() {
+		return squadra;
+	}
+
+	public void setSquadra(Squadra squadra) {
+		this.squadra = squadra;
+	}
+
 }

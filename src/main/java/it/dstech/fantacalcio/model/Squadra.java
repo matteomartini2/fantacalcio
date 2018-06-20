@@ -22,7 +22,7 @@ public class Squadra extends Base {
 	private String nome;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="squadra")
-	@JoinColumn (name = "lista_giocatori", unique = false, nullable = false)
+	
 	private List<Giocatore> listaGiocatori;
 	
 	@Enumerated(EnumType.STRING)

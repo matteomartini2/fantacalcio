@@ -22,7 +22,7 @@ public class Squadra extends Base {
 	private String nome;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="squadra")
-	@Column (name = "lista_giocatori", unique = false, nullable = false)
+	@JoinColumn (name = "lista_giocatori", unique = false, nullable = false)
 	private List<Giocatore> listaGiocatori;
 	
 	@Enumerated(EnumType.STRING)
@@ -34,6 +34,8 @@ public class Squadra extends Base {
 	private User user;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn
+	@JsonIgnore
 	private Campionato campionato;
 	
 	@Column (name = "punteggio", unique = false, nullable = false)

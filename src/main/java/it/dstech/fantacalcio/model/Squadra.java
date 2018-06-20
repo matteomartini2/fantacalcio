@@ -9,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -31,6 +32,9 @@ public class Squadra extends Base {
 	@JoinColumn
 	@JsonIgnore
 	private User user;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Campionato campionato;
 	
 	@Column (name = "punteggio", unique = false, nullable = false)
 	private Integer punteggio;

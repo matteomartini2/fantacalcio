@@ -2,27 +2,39 @@ package it.dstech.fantacalcio.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity(name = "user")
 public class User  extends Base{
 
 	
-	@Column (name = "nome", nullable = false, unique = true)
+	@Column (name = "nome", nullable = false)
 	private String nome;
 	
-	@Column (name = "cognome", nullable = false, unique = true)
+	@Column (name = "cognome", nullable = false)
 	private String cognome;
-	
 
 	@Column (name = "username", nullable = false, unique = true)
 	private String username;
 	
-	@Column (name = "password", nullable = false, unique = true)
+	@Column (name = "password", nullable = false)
 	private String password;
 	
-	@Column (name = "credito_da_spendere", nullable = false, unique = true)
+	@Column (name = "credito_da_spendere", nullable = false)
 	private Integer creditoDaSpendere;
+	
+	@Enumerated(EnumType.STRING)
+	private UserProfileType profileType;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Squadra squadra;
 
 	public String getNome() {
 		return nome;
@@ -64,5 +76,20 @@ public class User  extends Base{
 		this.creditoDaSpendere = creditoDaSpendere;
 	}
 
-	
+	public UserProfileType getProfileType() {
+		return profileType;
+	}
+
+	public void setProfileType(UserProfileType profileType) {
+		this.profileType = profileType;
+	}
+
+	public Squadra getSquadra() {
+		return squadra;
+	}
+
+	public void setSquadra(Squadra squadra) {
+		this.squadra = squadra;
+	}
+
 }

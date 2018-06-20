@@ -1,5 +1,6 @@
 package it.dstech.fantacalcio.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,8 +33,8 @@ public class User  extends Base{
 	@Enumerated(EnumType.STRING)
 	private UserProfileType profileType;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "user")
+	@JsonIgnore 
 	private Squadra squadra;
 
 	public String getNome() {

@@ -1,0 +1,75 @@
+Traccia esercizio 
+
+Fantacalcio
+
+Base
+* Id
+
+User
+* Nome
+* Cognome
+* Squadra //OneToOne
+* Username
+* Password
+* CreditoDaSpendere
+
+ENUM UserProfileType
+* ADMIN (//inizio anno mette i giocatori e poi i voti e il prezzo) , USER
+
+Campionato
+* Nome
+* Nazione
+* Lista squadre //OneToMany
+* Lista giocatoriDisponibili //OneToMany
+
+Modulo ENUM
+* FORMAZIONE_UNO, FORMAZIONE_DUE, FORMAZIONE_TRE
+
+Squadra
+* Nome
+* Lista giocatori
+* Modulo
+* Punteggio
+
+Giocatori
+* Nome
+* Cognome
+* Nazione
+* PunteggioDellaSettimana
+* Ruolo
+* Prezzo
+* Boolean titolare (se è in panchina o no)
+
+ENUM RUOLI
+* Portiere
+* Difensore
+* Centrocampista 
+* Attacacante
+
+
+ADMIN 
+
+Lista dei giocatori (mette il voto e il credito).
+Prendere i voti settimanali (update di punteggio).
+Rimuovere o aggiungere i giocatori alla lista di giocatoriDisponibile.
+Aggiunge campeonato.
+Eliminare un utente e cancella squadra.
+
+USER
+Creare una squadra.
+Comprare nuovi giocatori (minimo un portiere) per la nuova squadra.
+Scegliere la formazione.
+
+Scontri a random fra gli user (non può essere lo stesso) per 38 volte. Finiamo prima un giro di partite contro tutti e poi ricominciamo per le volte che mancano. 
+Admin aggiorna i punteggi e poi si ricomincia.
+Ogni settimana, ogni squadra fa una partita. 
+
+La classifica campionato generale è cumulativa, ma le partite settimanali non lo sono.
+
+Dopo 38 partite.
+
+
+
+Database - tutti i giocatori
+
+Comprare giocatori

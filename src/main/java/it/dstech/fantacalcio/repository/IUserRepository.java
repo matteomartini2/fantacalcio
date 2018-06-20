@@ -1,5 +1,10 @@
 package it.dstech.fantacalcio.repository;
 
-public interface IUserRepository {
+import org.springframework.data.repository.CrudRepository;
 
+import it.dstech.fantacalcio.model.User;
+
+public interface IUserRepository extends CrudRepository<User, Long>{
+	
+	User findByUsername (String username);
 }

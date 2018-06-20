@@ -12,7 +12,7 @@ public abstract class Base {
 	@Id
 	@GeneratedValue
 	@SequenceGenerator(name = "nome", initialValue = 1, allocationSize = 1)
-	Long id;
+	private Long id;
 	
 	public Long getId() {
 		return this.id;

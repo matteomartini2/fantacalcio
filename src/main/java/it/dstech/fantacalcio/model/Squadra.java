@@ -34,7 +34,6 @@ public class Squadra extends Base {
 	private User user;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn
 	@JsonIgnore
 	private Campionato campionato;
 	

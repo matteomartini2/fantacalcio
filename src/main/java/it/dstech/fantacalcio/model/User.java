@@ -14,8 +14,7 @@ public class User  extends Base{
 	@Column (name = "cognome", nullable = false, unique = true)
 	private String cognome;
 	
-<<<<<<< HEAD
-=======
+
 	@Column (name = "username", nullable = false, unique = true)
 	private String username;
 	
@@ -66,5 +65,4 @@ public class User  extends Base{
 	}
 
 	
->>>>>>> 83aee91e21e636c623c927aa59a71c73dcfa2c1a
 }

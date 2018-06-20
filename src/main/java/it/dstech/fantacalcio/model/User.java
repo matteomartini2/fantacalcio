@@ -14,20 +14,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User  extends Base{
 
 	
-	@Column (name = "nome", nullable = false, unique = true)
+	@Column (name = "nome", nullable = false)
 	private String nome;
 	
-	@Column (name = "cognome", nullable = false, unique = true)
+	@Column (name = "cognome", nullable = false)
 	private String cognome;
-	
 
 	@Column (name = "username", nullable = false, unique = true)
 	private String username;
 	
-	@Column (name = "password", nullable = false, unique = true)
+	@Column (name = "password", nullable = false)
 	private String password;
 	
-	@Column (name = "credito_da_spendere", nullable = false, unique = true)
+	@Column (name = "credito_da_spendere", nullable = false)
 	private Integer creditoDaSpendere;
 	
 	@Enumerated(EnumType.STRING)

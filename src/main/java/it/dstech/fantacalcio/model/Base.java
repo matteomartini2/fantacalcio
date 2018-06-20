@@ -6,7 +6,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 
 @MappedSuperclass
-public class Base {
+public abstract class Base {
 	
 
 	@Id

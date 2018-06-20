@@ -2,12 +2,14 @@ package it.dstech.fantacalcio.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,6 +20,7 @@ public class Squadra extends Base {
 	@Column (name = "nome", unique = false, nullable = false)
 	private String nome;
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="squadra")
 	@Column (name = "lista_giocatori", unique = false, nullable = false)
 	private List<Giocatore> listaGiocatori;
 	

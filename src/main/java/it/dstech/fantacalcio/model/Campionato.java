@@ -2,8 +2,10 @@ package it.dstech.fantacalcio.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,11 +19,11 @@ public class Campionato {
 	@Column(name="nazione_campionato",nullable = false)	
 	private String nazioneCampionato;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy= "campionato")
 	@JsonIgnore
 	private List<Squadra> listaSquadre;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy= "campionato")
 	@JsonIgnore
 	private List<Giocatore> listaGiocatoriDisponibili;
 

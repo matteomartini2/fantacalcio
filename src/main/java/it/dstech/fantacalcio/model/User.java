@@ -2,6 +2,8 @@ package it.dstech.fantacalcio.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 
 @Entity(name = "user")
@@ -23,6 +25,9 @@ public class User  extends Base{
 	
 	@Column (name = "credito_da_spendere", nullable = false, unique = true)
 	private Integer creditoDaSpendere;
+	
+	@Enumerated(EnumType.STRING)
+	private UserProfileType profileType;
 
 	public String getNome() {
 		return nome;
@@ -62,6 +67,14 @@ public class User  extends Base{
 
 	public void setCreditoDaSpendere(Integer creditoDaSpendere) {
 		this.creditoDaSpendere = creditoDaSpendere;
+	}
+
+	public UserProfileType getProfileType() {
+		return profileType;
+	}
+
+	public void setProfileType(UserProfileType profileType) {
+		this.profileType = profileType;
 	}
 
 	

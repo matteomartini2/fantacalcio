@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "giocatore")
 public class Giocatore extends Base{
@@ -29,11 +33,32 @@ public class Giocatore extends Base{
 	@Column (name = "titolare", unique = false, nullable = false)
 	private boolean titolare;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Campionato campionato;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Squadra squadra;
 	
 	//getters and setters
 	
+	
+	
 	public String getNome() {
 		return nome;
+	}
+	public Campionato getCampionato() {
+		return campionato;
+	}
+	public void setCampionato(Campionato campionato) {
+		this.campionato = campionato;
+	}
+	public Squadra getSquadra() {
+		return squadra;
+	}
+	public void setSquadra(Squadra squadra) {
+		this.squadra = squadra;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;

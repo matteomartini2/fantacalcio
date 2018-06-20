@@ -22,7 +22,6 @@ public class Squadra extends Base {
 	private String nome;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="squadra")
-	
 	private List<Giocatore> listaGiocatori;
 	
 	@Enumerated(EnumType.STRING)

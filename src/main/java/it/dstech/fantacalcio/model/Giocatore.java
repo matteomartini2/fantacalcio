@@ -2,6 +2,8 @@ package it.dstech.fantacalcio.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity(name = "giocatore")
 public class Giocatore extends Base{
@@ -18,7 +20,7 @@ public class Giocatore extends Base{
 	@Column (name = "punteggio_della_settimana", unique = false, nullable = false)
 	private Long punteggioDellaSettimana;
 	
-	@Column (name = "ruolo", unique = false, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private Ruolo ruolo;
 	
 	@Column (name = "prezzo", unique = false, nullable = false)

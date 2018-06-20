@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name= "campionato")
+@Entity(name="campionato")
 public class Campionato {
 
 	@Column(name="nome_campionato",nullable = false)

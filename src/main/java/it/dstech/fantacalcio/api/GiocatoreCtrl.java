@@ -44,7 +44,7 @@ public class GiocatoreCtrl {
 	}
 	
 	@RequestMapping (method = RequestMethod.GET, value = "findOne")
-	public Optional<Giocatore> findOne(@RequestParam(name = "id") Long id) {
+	public Giocatore findOne(@RequestParam(name = "id") Long id) throws Exception {
 		return service.findOne(id);
 	}
 	

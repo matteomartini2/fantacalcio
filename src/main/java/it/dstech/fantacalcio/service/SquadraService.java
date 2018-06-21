@@ -71,12 +71,13 @@ public class SquadraService {
 
 	}
 
-	public Squadra associaSquadraCampionato(Long idSquadra) {
+	public Squadra associaSquadraCampionato(Squadra squadra, String NomeCampionato) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Campionato campionato = campionatoService.findByUsername(auth.getName());
+		User user = serviceUser.findByUsername(auth.getName());
+		
+		Campionato campionato = campionatoService.findByUsername(NomeCampionato);
 
-		Squadra squadra = dao.findById(idSquadra).get();
 		List<Squadra> listaSquadre = campionato.getListaSquadre();
 		if (listaSquadre == null)
 			listaSquadre = new ArrayList<>();

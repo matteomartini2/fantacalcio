@@ -45,10 +45,10 @@ public class GiocatoreService {
 		dao.deleteAll();
 	}
 	
-	public Optional<Giocatore> findOne(Long id) {
+	public Giocatore findOne(Long id) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = service.findByUsername(auth.getName());
-		return dao.findById(id);
+		return dao.findById(id).orElseThrow(() -> new Exception());
 	}
 	
 	public Iterable<Giocatore> findAll(){
@@ -60,7 +60,7 @@ public class GiocatoreService {
 	public Giocatore update(Giocatore giocatoreInput, Long id) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = service.findByUsername(auth.getName());
-		Giocatore giocatoreDB = dao.findById(id).orElseThrow(() -> new Exception ());
+		Giocatore giocatoreDB = findOne(id);
 		giocatoreDB.setNome(giocatoreInput.getNome());
 		giocatoreDB.setCognome(giocatoreInput.getCognome());
 		giocatoreDB.setNazione(giocatoreInput.getNazione());

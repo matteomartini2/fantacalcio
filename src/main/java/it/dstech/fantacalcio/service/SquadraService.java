@@ -1,5 +1,6 @@
 package it.dstech.fantacalcio.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -57,23 +58,34 @@ public class SquadraService {
 		dao.deleteAll();
 	}
 
-	public Squadra create(Squadra squadra) {
+	public Squadra create(Squadra squadra, Long idCampionato) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = serviceUser.findByUsername(auth.getName());
+		Campionato campionato = campionatoService.findOne(idCampionato);
+		LocalDate dataOggi = LocalDate.now();
+		if(dataOggi.isAfter(campionato.getDataInizio())) {
+			throw new Exception ("Campionato non disponibile.");
+		}
+		campionato.getListaSquadre().add(squadra);
 		return dao.save(squadra);
 	}
 
-	public Squadra update(Squadra s) {
+	public Squadra update(Squadra s, Long idCampionato) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = serviceUser.findByUsername(auth.getName());
+		Campionato campionato = campionatoService.findOne(idCampionato);
+		LocalDate dataOggi = LocalDate.now();
+		if(dataOggi.isAfter(campionato.getDataInizio())) {
+			throw new Exception ("Campionato non disponibile.");
+		}
 		Squadra squadra = dao.findById(s.getId()).get();
-
 		squadra.setListaGiocatori(s.getListaGiocatori());
 		squadra.setModulo(s.getModulo());
 		squadra.setNome(s.getNome());
 		squadra.setPunteggio(s.getPunteggio());
 		squadra.setUser(s.getUser());
-
+		squadra.setDataRegistrazione(s.getDataRegistrazione());
+		campionato.getListaSquadre().add(s);
 		return dao.save(squadra);
 
 	}

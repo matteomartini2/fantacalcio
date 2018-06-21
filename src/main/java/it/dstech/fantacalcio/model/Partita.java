@@ -12,26 +12,26 @@ public class Partita extends Base {
 	private LocalDate data;
 
 	@Column (name = "squadraUno", unique = false, nullable = false)
-	private Squadra squadraUno;
+	private Squadra SquadraUno;
 	
 	@Column (name = "squadraDue", unique = false, nullable = false)
-	private Squadra squadraDue;
+	private Squadra SquadraDue;
 
-	
+
 	public Squadra getSquadraUno() {
-		return squadraUno;
+		return SquadraUno;
 	}
 
 	public void setSquadraUno(Squadra squadraUno) {
-		this.squadraUno = squadraUno;
+		SquadraUno = squadraUno;
 	}
 
 	public Squadra getSquadraDue() {
-		return squadraDue;
+		return SquadraDue;
 	}
 
 	public void setSquadraDue(Squadra squadraDue) {
-		this.squadraDue = squadraDue;
+		SquadraDue = squadraDue;
 	}
 
 	public LocalDate getData() {

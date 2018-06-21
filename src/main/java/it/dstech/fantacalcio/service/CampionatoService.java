@@ -39,11 +39,15 @@ public class CampionatoService {
 	}
 	
 
+	/*CREA CAMPIONATO LO PUO FARE SOLO L'ADMIN
+	 * */
+
+
 	public Campionato findByUsername(String username) {
 		
 		return campionatoRepository.findByNomeCampionato(username);
 	}
 	
 	
-	
+
 }

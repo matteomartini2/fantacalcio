@@ -87,7 +87,7 @@ public class SquadraService {
 
 	}
 
-	public Squadra findByNome(String nome, Squadra squadra) {
+	public Squadra findByNome(String nome) {
 
 		return dao.findBynome(nome);
 	}

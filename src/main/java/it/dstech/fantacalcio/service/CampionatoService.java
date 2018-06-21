@@ -16,18 +16,23 @@ public class CampionatoService {
 	public Campionato findOne(Long id) throws Exception {
 		return campionatoRepository.findById(id).orElseThrow(()->new Exception());
 	}
+	
 	public Iterable<Campionato> findAll(){
 		return campionatoRepository.findAll();
 	}
+	
 	public void deleteOne(Long id) {
 		campionatoRepository.deleteById(id);
 	}
+	
 	public void deleteAll() {
 		campionatoRepository.findAll();
 	}
+	
 	public Campionato create (Campionato campionato) {
 		return campionatoRepository.save(campionato);
 	}
+	
 	public Campionato update (Campionato campionato, Long id) throws Exception {
 		//Campionato campionatoNuovo = campionatoRepository.findById(id).orElseThrow(()->new Exception());
 		Campionato campionatoNuovo = findOne(id);

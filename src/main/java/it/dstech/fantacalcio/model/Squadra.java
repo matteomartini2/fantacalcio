@@ -80,4 +80,14 @@ public class Squadra extends Base {
 		this.punteggio = punteggio;
 	}
 
+	public Campionato getCampionato() {
+		return campionato;
+	}
+
+	public void setCampionato(Campionato campionato) {
+		this.campionato = campionato;
+	}
+	
+	
+
 }

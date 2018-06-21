@@ -31,8 +31,15 @@ public class GiocatoreService {
 		User user = service.findByUsername(auth.getName());
 		Campionato campionato = serviceCampionato.findOne(idCampionato);
 		List<Giocatore> listaGiocatoriDisp = campionato.getListaGiocatoriDisponibili();
+		boolean flag = false;
 		if(listaGiocatoriDisp==null) listaGiocatoriDisp = new ArrayList<>();
-		listaGiocatoriDisp.add(giocatore);
+			if(!listaGiocatoriDisp.contains(giocatore)) {
+				flag = true;
+				listaGiocatoriDisp.add(giocatore);
+			}
+		if(flag==false) {
+			throw new Exception ("Questo giocatore è già presente");
+		}
 		campionato.setListaGiocatoriDisponibili(listaGiocatoriDisp);
 		serviceCampionato.create(campionato);
 		return dao.save(giocatore);

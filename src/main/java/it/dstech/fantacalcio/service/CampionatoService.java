@@ -38,6 +38,7 @@ public class CampionatoService {
 		return campionatoNuovo;
 	}
 	
-	
+	/*CREA CAMPIONATO LO PUO FARE SOLO L'ADMIN
+	 * */
 	
 }

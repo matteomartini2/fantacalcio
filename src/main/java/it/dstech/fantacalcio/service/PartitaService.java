@@ -35,10 +35,8 @@ public class PartitaService {
 		Campionato campionato = service.findOne(idCampionato);
 		List<Squadra> listaSquadre = campionato.getListaSquadre();
 		campionato.getListaGiocatoriDisponibili();
-		if(listaSquadre.size()>1) {
-			Partita partita = new Partita();
-			partita.setData(campionato.getDataInizio());
-			dao.save(partita);
-		}
+		Partita partita = new Partita();
+		partita.setData(campionato.getDataInizio());
+		dao.save(partita);
 	}
 }

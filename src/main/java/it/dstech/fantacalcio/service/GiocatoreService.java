@@ -124,7 +124,7 @@ public class GiocatoreService {
 		return dao.save(giocatoreDB);
 	}
 
-	public List<Giocatore> compraGiocatore (Long idGiocatore) {
+	public List<Giocatore> compraGiocatore (Long idGiocatore) throws Exception {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = service.findByUsername(auth.getName());
@@ -133,12 +133,17 @@ public class GiocatoreService {
 		List<Giocatore> listaDisponibili= squadra.getCampionato().getListaGiocatoriDisponibili();
 		List<Giocatore> listaGiocatoriSquadra = squadra.getListaGiocatori();
 		if (listaGiocatoriSquadra == null) listaGiocatoriSquadra = new ArrayList<>();
+		int counterIf = 0;
 		for (Giocatore giocatore : listaDisponibili) {
 			if(listaGiocatoriSquadra.size()<24 && !listaGiocatoriSquadra.contains(giocatore)) {
+				counterIf++;
 				if (giocatore.getId().equals(idGiocatore)) {
-					if(controlloRuolo(giocatore.getRuolo().ROLE_PORTIERE) <= 3 || controlloRuolo(giocatore.getRuolo().ROLE_DIFENSORE) <= 8 || controlloRuolo(giocatore.getRuolo().ROLE_CENTROCAMPISTA) <= 6 || controlloRuolo(giocatore.getRuolo().ROLE_ATTACANTE) <= 6){
+					counterIf++;
+					if(controlloRuolo(Ruolo.ROLE_PORTIERE) <= 3 || controlloRuolo(Ruolo.ROLE_DIFENSORE) <= 8 || controlloRuolo(Ruolo.ROLE_CENTROCAMPISTA) <= 8 || controlloRuolo(Ruolo.ROLE_ATTACANTE) <= 6){
+						counterIf++;
 						Integer prezzoGiocatore = giocatore.getPrezzo();
 						if(user.getCreditoDaSpendere() >= prezzoGiocatore) {
+							counterIf++;
 							listaGiocatoriSquadra.add(giocatore);
 							user.setCreditoDaSpendere(user.getCreditoDaSpendere()-prezzoGiocatore);
 							user.getSquadra().setListaGiocatori(listaGiocatoriSquadra);
@@ -148,9 +153,11 @@ public class GiocatoreService {
 				}
 			}	
 		}
-		
-
-		return listaGiocatoriSquadra;
+		if (counterIf == 3) {
+			return listaGiocatoriSquadra;
+		} else {
+			throw new Exception("Errore");
+		}
 	}
 
 	public Integer controlloRuolo(Ruolo ruolo) {

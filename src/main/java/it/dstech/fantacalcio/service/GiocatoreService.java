@@ -15,7 +15,7 @@ public class GiocatoreService {
 	private IGiocatoreRepository dao;
 	
 	public Giocatore createOne(Giocatore giocatore) {
-		//aggiungere l'authenticate di user
+		
 		return dao.save(giocatore);
 	}
 	

@@ -24,13 +24,13 @@ public class GiocatoreCtrl {
 	private GiocatoreService service;
 	
 	@RequestMapping (method = RequestMethod.POST, value = "createOne")
-	public Giocatore createOne(@RequestBody Giocatore giocatore) {
-		return service.createOne(giocatore);
+	public Giocatore createOneADMIN(@RequestBody Giocatore giocatore, @RequestParam (name = "id") Long idCampionato) throws Exception {
+		return service.createOneADMIN(giocatore, idCampionato);
 	}
 	
 	@RequestMapping (method = RequestMethod.POST, value = "createLista")
-	public Iterable<Giocatore> createLista(@RequestBody ArrayList<Giocatore> listaGiocatori){
-		return service.createLista(listaGiocatori);
+	public Iterable<Giocatore> createListaADMIN(@RequestBody ArrayList<Giocatore> listaGiocatori, @RequestParam (name = "id") Long idCampionato) throws Exception{
+		return service.createListaADMIN(listaGiocatori, idCampionato);
 	}
 	
 	@RequestMapping (method = RequestMethod.DELETE, value = "deleteOne")

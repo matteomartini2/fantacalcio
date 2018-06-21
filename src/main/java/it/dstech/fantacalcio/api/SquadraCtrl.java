@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.dstech.fantacalcio.model.Modulo;
 import it.dstech.fantacalcio.model.Squadra;
 import it.dstech.fantacalcio.service.SquadraService;
 
@@ -61,6 +62,11 @@ public class SquadraCtrl {
 	@PostMapping("/associaSquadra")
 	public Squadra associaSquadra(@RequestBody Squadra squadra, @RequestParam String nomeCampionato) {
 
-		return associaSquadra(squadra, nomeCampionato);
+		return serviceSquadra.associaSquadraCampionato(squadra, nomeCampionato);
+	}
+	
+	@PostMapping("/sceltaFormazione")
+	public Squadra sceltaFormazione(@RequestParam (" idModulo") Modulo modulo) {
+		return serviceSquadra.sceltaFormazione(modulo);
 	}
 }

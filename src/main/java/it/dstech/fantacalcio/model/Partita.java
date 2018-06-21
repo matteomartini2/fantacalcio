@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity(name = "partita")
-public class Partita {
+public class Partita extends Base {
 
 	@Column (name = "data", unique = false, nullable = false)
 	private LocalDate data;

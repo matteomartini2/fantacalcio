@@ -1,5 +1,6 @@
 package it.dstech.fantacalcio.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,8 +28,19 @@ public class Campionato extends Base{
 	@JsonIgnore
 	private List<Giocatore> listaGiocatoriDisponibili;
 
+	@Column(name = "data_inizio", unique = false, nullable = false)
+	private LocalDate dataInizio;
 	
 	
+	
+	public LocalDate getDataInizio() {
+		return dataInizio;
+	}
+
+	public void setDataInizio(LocalDate dataInizio) {
+		this.dataInizio = dataInizio;
+	}
+
 	public String getNomeCampionato() {
 		return nomeCampionato;
 	}

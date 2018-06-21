@@ -33,8 +33,8 @@ public class SquadraCtrl {
 	}
 	
 	@PostMapping("/update")
-	public void update(@RequestBody Squadra carta ) {
-		serviceSquadra.update(carta);
+	public void update(@RequestBody Squadra carta, @RequestParam (name = "id") Long idCampionato ) throws Exception {
+		serviceSquadra.update(carta, idCampionato);
 	
 	}
 	
@@ -53,9 +53,9 @@ public class SquadraCtrl {
 	}
 	
 	@PostMapping("/create")
-	public Squadra create(@RequestBody Squadra carta) {
+	public Squadra create(@RequestBody Squadra carta, @RequestParam (name = "id") Long idCampionato) throws Exception {
 		
-		return serviceSquadra.create(carta);
+		return serviceSquadra.create(carta, idCampionato);
 	}
 	
 	@PostMapping("/associaSquadra")

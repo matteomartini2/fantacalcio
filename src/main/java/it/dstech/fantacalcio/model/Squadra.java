@@ -1,5 +1,6 @@
 package it.dstech.fantacalcio.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,6 +39,20 @@ public class Squadra extends Base {
 	
 	@Column (name = "punteggio", unique = false, nullable = false)
 	private Integer punteggio;
+	
+	@Column (name = "data_registrazione", unique = false, nullable = false)
+	private LocalDate dataRegistrazione;
+	
+	
+	
+
+	public LocalDate getDataRegistrazione() {
+		return dataRegistrazione;
+	}
+
+	public void setDataRegistrazione(LocalDate dataRegistrazione) {
+		this.dataRegistrazione = dataRegistrazione;
+	}
 
 	public String getNome() {
 		return nome;

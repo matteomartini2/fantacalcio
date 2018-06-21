@@ -105,4 +105,6 @@ public class GiocatoreService {
 		giocatoreDB.setTitolare(giocatoreInput.isTitolare());
 		return dao.save(giocatoreDB);
 	}
+	
+	
 }

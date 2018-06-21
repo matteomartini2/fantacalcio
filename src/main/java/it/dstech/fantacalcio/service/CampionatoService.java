@@ -38,6 +38,12 @@ public class CampionatoService {
 		return campionatoNuovo;
 	}
 	
+
+	public Campionato findByUsername(String username) {
+		
+		return campionatoRepository.findByNomeCampionato(username);
+	}
+	
 	
 	
 }

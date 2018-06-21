@@ -43,8 +43,6 @@ public class Squadra extends Base {
 	@Column (name = "data_registrazione", unique = false, nullable = false)
 	private LocalDate dataRegistrazione;
 	
-	
-	
 
 	public LocalDate getDataRegistrazione() {
 		return dataRegistrazione;

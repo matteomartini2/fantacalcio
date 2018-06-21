@@ -29,7 +29,8 @@ public class CampionatoService {
 		return campionatoRepository.save(campionato);
 	}
 	public Campionato update (Campionato campionato, Long id) throws Exception {
-		Campionato campionatoNuovo = campionatoRepository.findById(id).orElseThrow(()->new Exception());
+		//Campionato campionatoNuovo = campionatoRepository.findById(id).orElseThrow(()->new Exception());
+		Campionato campionatoNuovo = findOne(id);
 		campionatoNuovo.setNomeCampionato(campionato.getNomeCampionato());
 		campionatoNuovo.setNazioneCampionato(campionato.getNazioneCampionato());
 		campionatoNuovo.setListaSquadre(campionato.getListaSquadre());

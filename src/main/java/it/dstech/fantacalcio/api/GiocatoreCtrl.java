@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.dstech.fantacalcio.model.Giocatore;
@@ -22,17 +24,17 @@ public class GiocatoreCtrl {
 	private GiocatoreService service;
 	
 	@RequestMapping (method = RequestMethod.POST, value = "createOne")
-	public Giocatore createOne(Giocatore giocatore) {
+	public Giocatore createOne(@RequestBody Giocatore giocatore) {
 		return service.createOne(giocatore);
 	}
 	
 	@RequestMapping (method = RequestMethod.POST, value = "createLista")
-	public Iterable<Giocatore> createLista(ArrayList<Giocatore> listaGiocatori){
+	public Iterable<Giocatore> createLista(@RequestBody ArrayList<Giocatore> listaGiocatori){
 		return service.createLista(listaGiocatori);
 	}
 	
 	@RequestMapping (method = RequestMethod.DELETE, value = "deleteOne")
-	public void deleteOne(Long id) {
+	public void deleteOne(@RequestParam(name = "id") Long id) {
 		service.deleteOne(id);
 	}
 	
@@ -42,7 +44,7 @@ public class GiocatoreCtrl {
 	}
 	
 	@RequestMapping (method = RequestMethod.GET, value = "findOne")
-	public Optional<Giocatore> findOne(Long id) {
+	public Optional<Giocatore> findOne(@RequestParam(name = "id") Long id) {
 		return service.findOne(id);
 	}
 	
@@ -52,7 +54,7 @@ public class GiocatoreCtrl {
 	}
 	
 	@RequestMapping (method = RequestMethod.PUT, value = "update")
-	public Giocatore update(Giocatore giocatoreInput, Long id) throws Exception {
+	public Giocatore update(@RequestBody Giocatore giocatoreInput,@RequestParam(name = "id")  Long id) throws Exception {
 		return service.update(giocatoreInput, id);
 	}
 }

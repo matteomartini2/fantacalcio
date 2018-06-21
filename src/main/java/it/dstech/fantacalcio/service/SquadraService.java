@@ -91,4 +91,6 @@ public class SquadraService {
 
 		return dao.findBynome(nome);
 	}
+	
+	
 }

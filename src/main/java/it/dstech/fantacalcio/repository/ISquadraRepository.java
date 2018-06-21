@@ -5,5 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import it.dstech.fantacalcio.model.Squadra;
 
 public interface ISquadraRepository extends CrudRepository<Squadra, Long> {
+	
+	Squadra findBynome (String squadra);
+
 
 }

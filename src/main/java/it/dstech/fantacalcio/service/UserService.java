@@ -34,6 +34,7 @@ public class UserService {
 		User userDb = findOne(userInput.getId());
 		userDb.setUsername(userInput.getUsername());
 		userDb.setPassword(userInput.getPassword());
+		userDb.setSquadra(userInput.getSquadra());
 		return userRepository.save(userDb);
 	}
 	

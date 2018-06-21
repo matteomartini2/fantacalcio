@@ -12,28 +12,26 @@ public class Partita extends Base {
 	private LocalDate data;
 
 	@Column (name = "squadraUno", unique = false, nullable = false)
-	private Long idSquadraUno;
+	private Squadra SquadraUno;
 	
 	@Column (name = "squadraDue", unique = false, nullable = false)
-	private Long idSquadraDue;
+	private Squadra SquadraDue;
 
-	
-	
 
-	public Long getIdSquadraUno() {
-		return idSquadraUno;
+	public Squadra getSquadraUno() {
+		return SquadraUno;
 	}
 
-	public void setIdSquadraUno(Long idSquadraUno) {
-		this.idSquadraUno = idSquadraUno;
+	public void setSquadraUno(Squadra squadraUno) {
+		SquadraUno = squadraUno;
 	}
 
-	public Long getIdSquadraDue() {
-		return idSquadraDue;
+	public Squadra getSquadraDue() {
+		return SquadraDue;
 	}
 
-	public void setIdSquadraDue(Long idSquadraDue) {
-		this.idSquadraDue = idSquadraDue;
+	public void setSquadraDue(Squadra squadraDue) {
+		SquadraDue = squadraDue;
 	}
 
 	public LocalDate getData() {

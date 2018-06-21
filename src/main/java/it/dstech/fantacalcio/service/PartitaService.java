@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.dstech.fantacalcio.model.Campionato;
+import it.dstech.fantacalcio.model.Giocatore;
 import it.dstech.fantacalcio.model.Partita;
 import it.dstech.fantacalcio.model.Squadra;
 import it.dstech.fantacalcio.repository.IPartitaRepository;
@@ -31,12 +32,34 @@ public class PartitaService {
 	//squadraUno (random) e squadraDue (random, meno squadraUno)
 	//n partite, in base a quante squadre abbiamo nel DB
 
-	public void partiteRandom(Long idCampionato) throws Exception {
+	public void primaPartita(Long squadraUno, Long squadraDue, Long idCampionato) throws Exception {
 		Campionato campionato = service.findOne(idCampionato);
 		List<Squadra> listaSquadre = campionato.getListaSquadre();
-		campionato.getListaGiocatoriDisponibili();
 		Partita partita = new Partita();
 		partita.setData(campionato.getDataInizio());
-		dao.save(partita);
+		for(int i = 0; i< 38; i++) {
+			partita.setSquadraUno(serviceSquadra.findOne(squadraUno));
+			partita.setSquadraDue(serviceSquadra.findOne(squadraDue));
+			dao.save(partita);
+		}
+	}
+
+	public Long risultatoPartita (Long idPartita) throws Exception {
+		Partita partita = dao.findById(idPartita).orElseThrow(() -> new Exception());
+		int punteggioGiocatoriSquadraUno = 0;
+		int punteggioGiocatoriSquadraDue = 0;
+		for (Giocatore giocatore : partita.getSquadraUno().getListaGiocatori()) {
+			punteggioGiocatoriSquadraUno = (int) (punteggioGiocatoriSquadraUno + giocatore.getPunteggioDellaSettimana());
+		}
+		for (Giocatore giocatore : partita.getSquadraDue().getListaGiocatori()) {
+			punteggioGiocatoriSquadraDue = (int) (punteggioGiocatoriSquadraDue + giocatore.getPunteggioDellaSettimana());
+		}
+		if(punteggioGiocatoriSquadraUno>punteggioGiocatoriSquadraDue) {
+			return partita.getSquadraUno().getId();
+		}else if(punteggioGiocatoriSquadraDue>punteggioGiocatoriSquadraUno) {
+			return partita.getSquadraDue().getId();
+		}else {
+			return null;
+		}
 	}
 }

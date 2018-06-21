@@ -34,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests().antMatchers("/user/login", "/user/register", "/user/delete", "/user/getUserModel", "/user/findByUsername").permitAll()
+		http.httpBasic().and().authorizeRequests().antMatchers("/user/login", "/user/register", "/user/deleteOne", "/user/findOne" ,"/user/findAll", "/user/getUserModel", "/user/update", "/user/findByUsername").permitAll()
+		.antMatchers( "/user/deleteAll").hasAnyRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/**").permitAll()
 		.antMatchers(HttpMethod.DELETE, "/**").permitAll()
 		.antMatchers(HttpMethod.POST, "/**").permitAll()

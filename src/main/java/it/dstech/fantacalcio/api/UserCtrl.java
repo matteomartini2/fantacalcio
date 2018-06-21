@@ -70,11 +70,6 @@ public class UserCtrl {
 
 	}
 	
-	@RequestMapping("/delete")
-	public void deleteUser(Long id) {
-		userService.deleteOne(id);
-	}
-	
 	@RequestMapping ("/findByUsername/{username}")
 	public User findByUsername (@PathVariable ("username") String username) {
 		return userService.findByUsername(username);

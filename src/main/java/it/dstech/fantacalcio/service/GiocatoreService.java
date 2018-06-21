@@ -153,7 +153,7 @@ public class GiocatoreService {
 				}
 			}	
 		}
-		if (counterIf == 3) {
+		if (counterIf == 4) {
 			return listaGiocatoriSquadra;
 		} else {
 			throw new Exception("Errore");

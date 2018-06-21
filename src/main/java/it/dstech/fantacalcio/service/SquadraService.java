@@ -20,7 +20,7 @@ public class SquadraService {
 
 	@Autowired
 	private UserService serviceUser;
-	
+
 	@Autowired
 	private CampionatoService campionatoService;
 
@@ -75,7 +75,7 @@ public class SquadraService {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = serviceUser.findByUsername(auth.getName());
-		
+
 		Campionato campionato = campionatoService.findByUsername(NomeCampionato);
 
 		List<Squadra> listaSquadre = campionato.getListaSquadre();
@@ -85,5 +85,10 @@ public class SquadraService {
 		campionato.setListaSquadre(listaSquadre);
 		return dao.save(squadra);
 
+	}
+
+	public Squadra findByNome(String nome, Squadra squadra) {
+
+		return dao.findBynome(nome);
 	}
 }

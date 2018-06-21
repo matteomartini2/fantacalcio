@@ -92,5 +92,7 @@ public class User  extends Base{
 	public void setSquadra(Squadra squadra) {
 		this.squadra = squadra;
 	}
+	
+	
 
 }

@@ -38,10 +38,10 @@ public class CampionatoService {
 		return campionatoNuovo;
 	}
 	
-<<<<<<< HEAD
+
 	/*CREA CAMPIONATO LO PUO FARE SOLO L'ADMIN
 	 * */
-=======
+
 
 	public Campionato findByUsername(String username) {
 		
@@ -49,6 +49,5 @@ public class CampionatoService {
 	}
 	
 	
->>>>>>> branch 'master' of https://github.com/matteomartini2/fantacalcio.git
-	
+
 }

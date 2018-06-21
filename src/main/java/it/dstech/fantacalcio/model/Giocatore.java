@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,10 +35,12 @@ public class Giocatore extends Base{
 	private boolean titolare;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	@JsonIgnore
 	private Campionato campionato;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	@JsonIgnore
 	private Squadra squadra;
 	

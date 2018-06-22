@@ -34,8 +34,8 @@ public class SquadraCtrl {
 	}
 	
 	@PostMapping("/update")
-	public void update(@RequestBody Squadra carta, @RequestParam (name = "id") Long idCampionato ) throws Exception {
-		serviceSquadra.update(carta, idCampionato);
+	public void update(@RequestBody Squadra s, @RequestParam (name = "id") Long idCampionato ) throws Exception {
+		serviceSquadra.update(s, idCampionato);
 	
 	}
 	
@@ -54,9 +54,9 @@ public class SquadraCtrl {
 	}
 	
 	@PostMapping("/create")
-	public Squadra create(@RequestBody Squadra carta, @RequestParam (name = "id") Long idCampionato) throws Exception {
+	public Squadra create(@RequestBody Squadra squadra, @RequestParam (name = "id") Long idCampionato) throws Exception {
 		
-		return serviceSquadra.create(carta, idCampionato);
+		return serviceSquadra.create(squadra, idCampionato);
 	}
 	
 	@PostMapping("/associaSquadra")

@@ -58,7 +58,7 @@ public class GiocatoreCtrl {
 		return service.update(giocatoreInput, id);
 	}
 	
-	@GetMapping("/compraGiocatore")
+	@PostMapping("/compraGiocatore")
 	public List<Giocatore> compraGiocatore (@RequestParam("id") Long idGiocatore) throws Exception {
 		return service.compraGiocatore(idGiocatore);
 		

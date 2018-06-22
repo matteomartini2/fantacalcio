@@ -133,9 +133,11 @@ public class GiocatoreService {
 		Squadra squadra = user.getSquadra();
 		List<Giocatore> listaDisponibili= squadra.getCampionato().getListaGiocatoriDisponibili();
 		List<Giocatore> listaGiocatoriSquadra = squadra.getListaGiocatori();
+		Giocatore giocatoreTemp=null;
 		if (listaGiocatoriSquadra == null) listaGiocatoriSquadra = new ArrayList<>();
 		int counterIf = 0;
 		for (Giocatore giocatore : listaDisponibili) {
+			counterIf=0;
 			if(listaGiocatoriSquadra.size()<24 && !listaGiocatoriSquadra.contains(giocatore)) {
 				counterIf++;
 				if (giocatore.getId().equals(idGiocatore)) {
@@ -147,14 +149,17 @@ public class GiocatoreService {
 							counterIf++;
 							listaGiocatoriSquadra.add(giocatore);
 							user.setCreditoDaSpendere(user.getCreditoDaSpendere()-prezzoGiocatore);
-							user.getSquadra().setListaGiocatori(listaGiocatoriSquadra);
-							
+							squadra.setListaGiocatori(listaGiocatoriSquadra);
+							giocatore.setSquadra(squadra);
+							giocatoreTemp=giocatore;
+							break;
 						}
 					}
 				}
 			}	
 		}
 		if (counterIf == 4) {
+			dao.save(giocatoreTemp);
 			return listaGiocatoriSquadra;
 		} else {
 			throw new Exception("Errore");

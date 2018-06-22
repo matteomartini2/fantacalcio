@@ -148,7 +148,7 @@ public class GiocatoreService {
 							listaGiocatoriSquadra.add(giocatore);
 							user.setCreditoDaSpendere(user.getCreditoDaSpendere()-prezzoGiocatore);
 							user.getSquadra().setListaGiocatori(listaGiocatoriSquadra);
-							service.create(user);
+							
 						}
 					}
 				}

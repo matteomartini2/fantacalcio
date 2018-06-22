@@ -38,26 +38,28 @@ public class PartitaService {
 		Partita partita = new Partita();
 		partita.setData(campionato.getDataInizio());
 		for(int i = 0; i< 38; i++) {
-			partita.setSquadraUno(serviceSquadra.findOne(squadraUno));
-			partita.setSquadraDue(serviceSquadra.findOne(squadraDue));
+			partita.setIdSquadraUno(squadraUno);
+			partita.setIdSquadraDue(squadraDue);
 			dao.save(partita);
 		}
 	}
 
 	public Long risultatoPartita (Long idPartita) throws Exception {
 		Partita partita = dao.findById(idPartita).orElseThrow(() -> new Exception());
+		Squadra squadraUno = serviceSquadra.findOne(partita.getIdSquadraUno());
+		Squadra squadraDue = serviceSquadra.findOne(partita.getIdSquadraDue());
 		int punteggioGiocatoriSquadraUno = 0;
 		int punteggioGiocatoriSquadraDue = 0;
-		for (Giocatore giocatore : partita.getSquadraUno().getListaGiocatori()) {
+		for (Giocatore giocatore : squadraUno.getListaGiocatori()) {
 			punteggioGiocatoriSquadraUno = (int) (punteggioGiocatoriSquadraUno + giocatore.getPunteggioDellaSettimana());
 		}
-		for (Giocatore giocatore : partita.getSquadraDue().getListaGiocatori()) {
+		for (Giocatore giocatore : squadraDue.getListaGiocatori()) {
 			punteggioGiocatoriSquadraDue = (int) (punteggioGiocatoriSquadraDue + giocatore.getPunteggioDellaSettimana());
 		}
 		if(punteggioGiocatoriSquadraUno>punteggioGiocatoriSquadraDue) {
-			return partita.getSquadraUno().getId();
+			return partita.getIdSquadraUno();
 		}else if(punteggioGiocatoriSquadraDue>punteggioGiocatoriSquadraUno) {
-			return partita.getSquadraDue().getId();
+			return partita.getIdSquadraDue();
 		}else {
 			return null;
 		}

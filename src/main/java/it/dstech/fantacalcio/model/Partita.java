@@ -1,7 +1,9 @@
 package it.dstech.fantacalcio.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -11,27 +13,28 @@ public class Partita extends Base {
 	@Column (name = "data", unique = false, nullable = false)
 	private LocalDate data;
 
-	@Column (name = "squadraUno", unique = false, nullable = false)
-	private Squadra SquadraUno;
-	
-	@Column (name = "squadraDue", unique = false, nullable = false)
-	private Squadra SquadraDue;
+	@Column (name = "id_squadra_uno", unique = false, nullable = false)
+	private Long idSquadraUno;
+
+	@Column (name = "id_squadra_due", unique = false, nullable = false)
+	private Long idSquadraDue;
 
 
-	public Squadra getSquadraUno() {
-		return SquadraUno;
+
+	public Long getIdSquadraUno() {
+		return idSquadraUno;
 	}
 
-	public void setSquadraUno(Squadra squadraUno) {
-		SquadraUno = squadraUno;
+	public void setIdSquadraUno(Long idSquadraUno) {
+		this.idSquadraUno = idSquadraUno;
 	}
 
-	public Squadra getSquadraDue() {
-		return SquadraDue;
+	public Long getIdSquadraDue() {
+		return idSquadraDue;
 	}
 
-	public void setSquadraDue(Squadra squadraDue) {
-		SquadraDue = squadraDue;
+	public void setIdSquadraDue(Long idSquadraDue) {
+		this.idSquadraDue = idSquadraDue;
 	}
 
 	public LocalDate getData() {

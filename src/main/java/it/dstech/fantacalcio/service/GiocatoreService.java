@@ -139,7 +139,7 @@ public class GiocatoreService {
 				counterIf++;
 				if (giocatore.getId().equals(idGiocatore)) {
 					counterIf++;
-					if(controlloRuolo(Ruolo.ROLE_PORTIERE) <= 3 || controlloRuolo(Ruolo.ROLE_DIFENSORE) <= 8 || controlloRuolo(Ruolo.ROLE_CENTROCAMPISTA) <= 8 || controlloRuolo(Ruolo.ROLE_ATTACANTE) <= 6){
+					if(controlloRuolo(Ruolo.ROLE_PORTIERE) <= 3 || controlloRuolo(Ruolo.ROLE_DIFENSORE) <= 8 || controlloRuolo(Ruolo.ROLE_CENTROCAMPISTA) <= 8 || controlloRuolo(Ruolo.ROLE_ATTACCANTE) <= 6){
 						counterIf++;
 						Integer prezzoGiocatore = giocatore.getPrezzo();
 						if(user.getCreditoDaSpendere() >= prezzoGiocatore) {

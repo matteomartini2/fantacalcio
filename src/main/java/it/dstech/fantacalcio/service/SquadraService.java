@@ -68,7 +68,7 @@ public class SquadraService {
 		}
 		campionato.getListaSquadre().add(squadra);
 		squadra.setCampionato(campionato);
-		squadra.getUser().setId(user.getId());
+		squadra.setUser(user);
 		return dao.save(squadra);
 	}
 

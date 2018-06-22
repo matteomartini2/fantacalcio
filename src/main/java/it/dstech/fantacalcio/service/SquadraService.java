@@ -66,7 +66,7 @@ public class SquadraService {
 		if(dataOggi.isAfter(campionato.getDataInizio())) {
 			throw new Exception ("Campionato non disponibile.");
 		}
-		if(user.getSquadra()==null) {
+		if(user.getSquadra()==null && !campionato.getListaSquadre().contains(squadra)) {
 			campionato.getListaSquadre().add(squadra);
 			squadra.setCampionato(campionato);
 			squadra.setUser(user);

@@ -66,10 +66,14 @@ public class SquadraService {
 		if(dataOggi.isAfter(campionato.getDataInizio())) {
 			throw new Exception ("Campionato non disponibile.");
 		}
-		campionato.getListaSquadre().add(squadra);
-		squadra.setCampionato(campionato);
-		squadra.setUser(user);
-		return dao.save(squadra);
+		if(user.getSquadra()==null) {
+			campionato.getListaSquadre().add(squadra);
+			squadra.setCampionato(campionato);
+			squadra.setUser(user);
+			return dao.save(squadra);
+		}else {
+			throw new Exception ("Furbone, hai già creato una squadra");
+		}
 	}
 
 	public Squadra update(Squadra s, Long idCampionato) throws Exception {

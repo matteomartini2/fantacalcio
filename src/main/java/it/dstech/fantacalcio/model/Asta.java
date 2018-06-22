@@ -1,7 +1,7 @@
 package it.dstech.fantacalcio.model;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.HashMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +19,9 @@ public class Asta extends Base{
 	Long idGiocatore;
 	
 	@JoinColumn
-	Map<Long,Double> offerte;
+	HashMap<Long,Double> offerte;
+	//Long è id di cha fatto offerta
+	//Double valore offerta
 
 	public LocalDateTime getDataInizio() {
 		return dataInizio;
@@ -45,11 +47,11 @@ public class Asta extends Base{
 		this.idGiocatore = idGiocatore;
 	}
 
-	public Map<Long, Double> getOfferte() {
+	public HashMap<Long, Double> getOfferte() {
 		return offerte;
 	}
 
-	public void setOfferte(Map<Long, Double> offerte) {
+	public void setOfferte(HashMap<Long, Double> offerte) {
 		this.offerte = offerte;
 	}
 

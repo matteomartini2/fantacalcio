@@ -72,7 +72,7 @@ public class SquadraService {
 			squadra.setUser(user);
 			return dao.save(squadra);
 		}else {
-			throw new Exception ("Furbone, hai già creato una squadra");
+			return user.getSquadra();
 		}
 	}
 

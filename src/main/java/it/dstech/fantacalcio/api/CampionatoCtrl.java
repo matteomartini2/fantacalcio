@@ -15,7 +15,7 @@ import it.dstech.fantacalcio.model.Campionato;
 import it.dstech.fantacalcio.service.CampionatoService;
 
 @RestController
-@RequestMapping
+@RequestMapping(value="/campionato")
 public class CampionatoCtrl {
 
 	@Autowired

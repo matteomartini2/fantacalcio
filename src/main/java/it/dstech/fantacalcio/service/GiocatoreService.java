@@ -119,8 +119,6 @@ public class GiocatoreService {
 		giocatoreDB.setRuolo(giocatoreInput.getRuolo());
 		giocatoreDB.setPrezzo(giocatoreInput.getPrezzo());
 		giocatoreDB.setPunteggioDellaSettimana(giocatoreInput.getPunteggioDellaSettimana());
-		giocatoreDB.setSquadra(giocatoreInput.getSquadra());
-		giocatoreDB.setCampionato(giocatoreInput.getCampionato());
 		giocatoreDB.setTitolare(giocatoreInput.isTitolare());
 		return dao.save(giocatoreDB);
 	}

@@ -44,7 +44,7 @@ public class PartitaService {
 		}
 	}
 
-	public Long risultatoPartita (Long idPartita) throws Exception {
+	public Squadra risultatoPartita (Long idPartita) throws Exception {
 		Partita partita = dao.findById(idPartita).orElseThrow(() -> new Exception());
 		Squadra squadraUno = serviceSquadra.findOne(partita.getIdSquadraUno());
 		Squadra squadraDue = serviceSquadra.findOne(partita.getIdSquadraDue());
@@ -57,9 +57,11 @@ public class PartitaService {
 			punteggioGiocatoriSquadraDue = (int) (punteggioGiocatoriSquadraDue + giocatore.getPunteggioDellaSettimana());
 		}
 		if(punteggioGiocatoriSquadraUno>punteggioGiocatoriSquadraDue) {
-			return partita.getIdSquadraUno();
+			squadraUno.setPunteggio(punteggioGiocatoriSquadraUno);
+			return squadraUno;
 		}else if(punteggioGiocatoriSquadraDue>punteggioGiocatoriSquadraUno) {
-			return partita.getIdSquadraDue();
+			squadraDue.setPunteggio(punteggioGiocatoriSquadraDue);
+			return squadraDue;
 		}else {
 			return null;
 		}

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.dstech.fantacalcio.model.Squadra;
 import it.dstech.fantacalcio.service.PartitaService;
 
 @RestController
@@ -23,7 +24,7 @@ public class PartitaCtrl {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "risultatoPartita")
-	public Long risultatoPartita (@RequestParam("idP")Long idPartita) throws Exception {
+	public Squadra risultatoPartita (@RequestParam("idP")Long idPartita) throws Exception {
 		return service.risultatoPartita(idPartita);
 		
 	}

@@ -63,6 +63,7 @@ public class GiocatoreService {
 		for(Giocatore giocatore : listaGiocatori) {
 			if(!listaGiocatoriDisp.contains(giocatore)) {
 				flag = true;
+				giocatore.setCampionato(campionato);
 				listaGiocatoriDisp.add(giocatore);
 			}
 		}

@@ -67,6 +67,8 @@ public class SquadraService {
 			throw new Exception ("Campionato non disponibile.");
 		}
 		campionato.getListaSquadre().add(squadra);
+		squadra.setCampionato(campionato);
+		squadra.getUser().setId(user.getId());
 		return dao.save(squadra);
 	}
 

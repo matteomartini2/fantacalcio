@@ -27,8 +27,6 @@ public class GiocatoreService {
 	@Autowired
 	private CampionatoService serviceCampionato;
 
-	@Autowired
-	private SquadraService squadraService;
 
 	public Giocatore createOneADMIN(Giocatore giocatore, Long idCampionato) throws Exception {
 
@@ -131,7 +129,7 @@ public class GiocatoreService {
 		Squadra squadra = user.getSquadra();
 		List<Giocatore> listaDisponibili= squadra.getCampionato().getListaGiocatoriDisponibili();
 		List<Giocatore> listaGiocatoriSquadra = squadra.getListaGiocatori();
-		Giocatore giocatoreTemp=null;
+		Giocatore giocatoreTemp = null;
 		if (listaGiocatoriSquadra == null) listaGiocatoriSquadra = new ArrayList<>();
 		int counterIf = 0;
 		for (Giocatore giocatore : listaDisponibili) {
@@ -149,7 +147,7 @@ public class GiocatoreService {
 							user.setCreditoDaSpendere(user.getCreditoDaSpendere()-prezzoGiocatore);
 							squadra.setListaGiocatori(listaGiocatoriSquadra);
 							giocatore.setSquadra(squadra);
-							giocatoreTemp=giocatore;
+							giocatoreTemp = giocatore;
 							break;
 						}
 					}

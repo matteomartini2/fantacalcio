@@ -138,7 +138,7 @@ public class SquadraService {
 					//4-3-3
 					for(Integer i = 1 ; listaRosa.size() <= 10; i++) {
 						if(giocatore.getRuolo().equals(Ruolo.ROLE_PORTIERE) || giocatore.getRuolo().equals(Ruolo.ROLE_DIFENSORE) || giocatore.getRuolo().equals(Ruolo.ROLE_CENTROCAMPISTA) || giocatore.getRuolo().equals(Ruolo.ROLE_ATTACCANTE)) {
-							if(giocatoreService.controlloRuolo(Ruolo.ROLE_PORTIERE) < 1 || giocatoreService.controlloRuolo(Ruolo.ROLE_DIFENSORE)<=4  || giocatoreService.controlloRuolo(Ruolo.ROLE_CENTROCAMPISTA)<=3 || giocatoreService.controlloRuolo(Ruolo.ROLE_ATTACCANTE)<=3) {
+							if(giocatoreService.controlloRuolo(Ruolo.ROLE_PORTIERE) <= 1 || giocatoreService.controlloRuolo(Ruolo.ROLE_DIFENSORE)<=4  || giocatoreService.controlloRuolo(Ruolo.ROLE_CENTROCAMPISTA)<=3 || giocatoreService.controlloRuolo(Ruolo.ROLE_ATTACCANTE)<=3) {
 								listaRosa.add(giocatore);
 							}
 						}
@@ -146,7 +146,7 @@ public class SquadraService {
 				} else if (modulo.equals(Modulo.FORMAZIONE_DUE)){
 					//4-2-3-1
 					
-				} else {
+				} else { 
 					// 3-5-2
 					
 				}

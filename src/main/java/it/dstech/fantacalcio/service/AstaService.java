@@ -1,7 +1,5 @@
 package it.dstech.fantacalcio.service;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +22,13 @@ public class AstaService {
 	
 	@Autowired
 	GiocatoreService serviceGiocatore;
+	
 	@Autowired
 	UserService serviceUtente;
+	
 	@Autowired
 	UserService userService;
+	
 	@Autowired
 	AuthService authService;
 	

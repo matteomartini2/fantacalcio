@@ -15,23 +15,31 @@ public class UserService {
 	public User create (User user) {
 		return userRepository.save(user);
 	}
+	
 	public Iterable<User> createList (Iterable<User> listaUser){
 		return userRepository.saveAll(listaUser);
 	}
+	
 	public Iterable<User> findAll() {
 		return userRepository.findAll();
 	}
+	
 	public User findOne(Long id) throws Exception {
 		return userRepository.findById(id).orElseThrow(()-> new Exception());
 	}
+	
 	public void deleteAll() {
 		userRepository.deleteAll();
 	}
+	
 	public void deleteOne(Long id) {
 		userRepository.deleteById(id);
 	}
+	
 	public User update (User userInput) throws Exception {
 		User userDb = findOne(userInput.getId());
+		userDb.setNome(userInput.getNome());
+		userDb.setCognome(userInput.getCognome());
 		userDb.setUsername(userInput.getUsername());
 		userDb.setPassword(userInput.getPassword());
 		userDb.setSquadra(userInput.getSquadra());

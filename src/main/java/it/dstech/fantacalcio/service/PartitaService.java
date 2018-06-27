@@ -61,6 +61,7 @@ public class PartitaService {
 			squadraDue.setPunteggio(punteggioGiocatoriSquadraDue);
 			return squadraDue;
 		}else {
+			System.out.println("Pareggio");
 			return null;
 		}
 	}

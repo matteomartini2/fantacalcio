@@ -23,37 +23,37 @@ public class GiocatoreCtrl {
 	@Autowired
 	private GiocatoreService service;
 	
-	@RequestMapping (method = RequestMethod.POST, value = "createOne")
+	@RequestMapping (method = RequestMethod.POST, value = "/createOne")
 	public Giocatore createOneADMIN(@RequestBody Giocatore giocatore, @RequestParam (name = "id") Long idCampionato) throws Exception {
 		return service.createOneADMIN(giocatore, idCampionato);
 	}
 	
-	@RequestMapping (method = RequestMethod.POST, value = "createLista")
+	@RequestMapping (method = RequestMethod.POST, value = "/createLista")
 	public Iterable<Giocatore> createListaADMIN(@RequestBody ArrayList<Giocatore> listaGiocatori, @RequestParam (name = "id") Long idCampionato) throws Exception{
 		return service.createListaADMIN(listaGiocatori, idCampionato);
 	}
 	
-	@RequestMapping (method = RequestMethod.DELETE, value = "deleteOne")
+	@RequestMapping (method = RequestMethod.DELETE, value = "/deleteOne")
 	public void deleteOne(@RequestParam(name = "id") Long id) {
 		service.deleteOne(id);
 	}
 	
-	@RequestMapping (method = RequestMethod.DELETE, value = "deleteAll")
+	@RequestMapping (method = RequestMethod.DELETE, value = "/deleteAll")
 	public void deleteAll() {
 		service.deleteAll();
 	}
 	
-	@RequestMapping (method = RequestMethod.GET, value = "findOne")
+	@RequestMapping (method = RequestMethod.GET, value = "/findOne")
 	public Giocatore findOne(@RequestParam(name = "id") Long id) throws Exception {
 		return service.findOne(id);
 	}
 	
-	@RequestMapping (method = RequestMethod.GET, value = "findAll")
+	@RequestMapping (method = RequestMethod.GET, value = "/findAll")
 	public Iterable<Giocatore> findAll(){
 		return service.findAll();
 	}
 	
-	@RequestMapping (method = RequestMethod.PUT, value = "update")
+	@RequestMapping (method = RequestMethod.PUT, value = "/update")
 	public Giocatore update(@RequestBody Giocatore giocatoreInput,@RequestParam(name = "id")  Long id) throws Exception {
 		return service.update(giocatoreInput, id);
 	}
@@ -62,5 +62,10 @@ public class GiocatoreCtrl {
 	public List<Giocatore> compraGiocatore (@RequestParam("id") Long idGiocatore) throws Exception {
 		return service.compraGiocatore(idGiocatore);
 		
+	}
+	
+	@PutMapping("/aggiornaPunteggioGiocatore")
+	public Giocatore aggiornaPunteggioGiocatore(@RequestParam ("idGiocatore") Long idGiocatore, @RequestParam ("punteggio") Long nuovoPunteggioSettimana) throws Exception {
+		return service.aggiornaPunteggioGiocatore(idGiocatore, nuovoPunteggioSettimana);
 	}
 }

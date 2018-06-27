@@ -34,8 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests().antMatchers("/user/login", "/user/register", "/user/deleteOne", "/user/findOne" ,"/user/findAll", "/user/getUserModel", "/user/update", "/user/findByUsername").permitAll()
-		.antMatchers( "/user/deleteAll").hasAnyRole("ADMIN")
+		http.httpBasic().and().authorizeRequests().antMatchers("/user/login", "/user/register", "/user/deleteOne/**", "/user/findOne/**" ,"/user/findAll", "/user/getUserModel", "/user/update", "/user//findByUsername/**").permitAll()
+		.antMatchers("/campionato//findOne/**" , "/campionato/findAll" , "/squadra//findOne/**" , "/squadra/findAll").permitAll()
+		.antMatchers( "/user/deleteAll", "/campionato/create" , "/campionato/update/**" , "/campionato/deleteOne/**" , "/campionato/deleteAll" , "/squadra/deleteAll").hasAnyRole("ADMIN")
+		.antMatchers( "/giocatore/createOne" , "/giocatore/createLista" , "/giocatore/deleteOne/**" , "/giocatore/deleteAll" , "/giocatore/findOne/**" , "/giocatore/findAll" , "/giocatore/update" , "/giocatore/aggiornaPunteggioGiocatore" ).hasAnyRole("ADMIN")
+		.antMatchers("/squadra/create" , "/squadra/sceltaFormazione" , "/squadra/deleteOne" , "/squadra/update" , "/giocatore/compraGiocatore").hasAnyRole("USER")
 		.antMatchers(HttpMethod.GET, "/**").permitAll()
 		.antMatchers(HttpMethod.DELETE, "/**").permitAll()
 		.antMatchers(HttpMethod.POST, "/**").permitAll()

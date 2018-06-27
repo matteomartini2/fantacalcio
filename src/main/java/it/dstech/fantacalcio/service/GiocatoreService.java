@@ -120,7 +120,18 @@ public class GiocatoreService {
 		giocatoreDB.setTitolare(giocatoreInput.isTitolare());
 		return dao.save(giocatoreDB);
 	}
+	
+	//solo admin può fare questo
+	public Giocatore aggiornaPunteggioGiocatore(Long idGiocatore, Long nuovoPunteggioSettimana) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = service.findByUsername(auth.getName());
 
+		Giocatore giocatoreDB = findOne(idGiocatore);
+		giocatoreDB.setPunteggioDellaSettimana(nuovoPunteggioSettimana);
+		
+		return dao.save(giocatoreDB);
+	}
+	
 	public List<Giocatore> compraGiocatore (Long idGiocatore) throws Exception {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

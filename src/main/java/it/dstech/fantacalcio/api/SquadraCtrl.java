@@ -59,12 +59,6 @@ public class SquadraCtrl {
 		return serviceSquadra.create(squadra, idCampionato);
 	}
 	
-	@PostMapping("/associaSquadra")
-	public Squadra associaSquadra(@RequestBody Squadra squadra, @RequestParam String nomeCampionato) {
-
-		return serviceSquadra.associaSquadraCampionato(squadra, nomeCampionato);
-	}
-	
 	@PostMapping("/sceltaFormazione")
 	public Squadra sceltaFormazione(@RequestParam (" idModulo") Modulo modulo) {
 		return serviceSquadra.sceltaFormazione(modulo);

@@ -61,6 +61,7 @@ public class SquadraService {
 	public Squadra create(Squadra squadra, Long idCampionato) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = serviceUser.findByUsername(auth.getName());
+		
 		Campionato campionato = campionatoService.findOne(idCampionato);
 		LocalDate dataOggi = LocalDate.now();
 		if(dataOggi.isAfter(campionato.getDataInizio())) {
@@ -79,12 +80,13 @@ public class SquadraService {
 	public Squadra update(Squadra s, Long idCampionato) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = serviceUser.findByUsername(auth.getName());
+		
 		Campionato campionato = campionatoService.findOne(idCampionato);
 		LocalDate dataOggi = LocalDate.now();
 		if(dataOggi.isAfter(campionato.getDataInizio())) {
 			throw new Exception ("Campionato non disponibile.");
 		}
-		Squadra squadra = dao.findById(s.getId()).get();
+		Squadra squadra = findOne(s.getId());
 		squadra.setListaGiocatori(s.getListaGiocatori());
 		squadra.setModulo(s.getModulo());
 		squadra.setNome(s.getNome());
@@ -92,22 +94,6 @@ public class SquadraService {
 		squadra.setUser(s.getUser());
 		squadra.setDataRegistrazione(s.getDataRegistrazione());
 		campionato.getListaSquadre().add(s);
-		return dao.save(squadra);
-
-	}
-
-	public Squadra associaSquadraCampionato(Squadra squadra, String NomeCampionato) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = serviceUser.findByUsername(auth.getName());
-
-		Campionato campionato = campionatoService.findByUsername(NomeCampionato);
-
-		List<Squadra> listaSquadre = campionato.getListaSquadre();
-		if (listaSquadre == null)
-			listaSquadre = new ArrayList<>();
-		listaSquadre.add(squadra);
-		campionato.setListaSquadre(listaSquadre);
 		return dao.save(squadra);
 
 	}
@@ -145,9 +131,23 @@ public class SquadraService {
 					}
 				} else if (modulo.equals(Modulo.FORMAZIONE_DUE)){
 					//4-2-3-1
+					for(Integer i = 1 ; listaRosa.size() <= 10; i++) {
+						if(giocatore.getRuolo().equals(Ruolo.ROLE_PORTIERE) || giocatore.getRuolo().equals(Ruolo.ROLE_DIFENSORE) || giocatore.getRuolo().equals(Ruolo.ROLE_CENTROCAMPISTA) || giocatore.getRuolo().equals(Ruolo.ROLE_ATTACCANTE)) {
+							if(giocatoreService.controlloRuolo(Ruolo.ROLE_PORTIERE) <= 1 || giocatoreService.controlloRuolo(Ruolo.ROLE_DIFENSORE)<=4  || giocatoreService.controlloRuolo(Ruolo.ROLE_CENTROCAMPISTA)<=5 || giocatoreService.controlloRuolo(Ruolo.ROLE_ATTACCANTE)<=1) {
+								listaRosa.add(giocatore);
+							}
+						}
+					}
 					
 				} else { 
 					// 3-5-2
+					for(Integer i = 1 ; listaRosa.size() <= 10; i++) {
+						if(giocatore.getRuolo().equals(Ruolo.ROLE_PORTIERE) || giocatore.getRuolo().equals(Ruolo.ROLE_DIFENSORE) || giocatore.getRuolo().equals(Ruolo.ROLE_CENTROCAMPISTA) || giocatore.getRuolo().equals(Ruolo.ROLE_ATTACCANTE)) {
+							if(giocatoreService.controlloRuolo(Ruolo.ROLE_PORTIERE) <= 1 || giocatoreService.controlloRuolo(Ruolo.ROLE_DIFENSORE)<=3  || giocatoreService.controlloRuolo(Ruolo.ROLE_CENTROCAMPISTA)<=5 || giocatoreService.controlloRuolo(Ruolo.ROLE_ATTACCANTE)<=2) {
+								listaRosa.add(giocatore);
+							}
+						}
+					}
 					
 				}
 		}

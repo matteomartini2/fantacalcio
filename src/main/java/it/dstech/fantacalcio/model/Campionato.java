@@ -16,23 +16,38 @@ public class Campionato extends Base{
 
 	@Column(name="nome_campionato",nullable = false)
 	private String nomeCampionato;
-	
+
 	@Column(name="nazione_campionato",nullable = false)	
 	private String nazioneCampionato;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy= "campionato")
 	@JsonIgnore
 	private List<Squadra> listaSquadre;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy= "campionato")
 	@JsonIgnore
 	private List<Giocatore> listaGiocatoriDisponibili;
 
 	@Column(name = "data_inizio", unique = false, nullable = false)
 	private LocalDate dataInizio;
+
+	@OneToMany(fetch =FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "campionato")
+	@JsonIgnore
+	private List<Partita> listaPartite;
 	
 	
-	
+
+	//getters and setters
+
+
+	public List<Partita> getListaPartite() {
+		return listaPartite;
+	}
+
+	public void setListaPartite(List<Partita> listaPartite) {
+		this.listaPartite = listaPartite;
+	}
+
 	public LocalDate getDataInizio() {
 		return dataInizio;
 	}
@@ -73,8 +88,8 @@ public class Campionato extends Base{
 		this.listaGiocatoriDisponibili = listaGiocatoriDisponibili;
 	}
 
-	
 
-	
-	
+
+
+
 }

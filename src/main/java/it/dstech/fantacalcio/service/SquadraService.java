@@ -57,6 +57,10 @@ public class SquadraService {
 		User user = serviceUser.findByUsername(auth.getName());
 		dao.deleteAll();
 	}
+	
+	public Squadra salva(Squadra squadra) {
+		return dao.save(squadra);
+	}
 
 	public Squadra create(Squadra squadra, Long idCampionato) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

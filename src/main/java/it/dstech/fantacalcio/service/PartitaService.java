@@ -77,6 +77,36 @@ public class PartitaService {
 		return partita;
 	}
 	
+	public Partita prossimePartite(Long idCampionato , LocalDate dataPartita) throws Exception {
+		Campionato campionato = service.findOne(idCampionato);
+		List<Squadra> listaSquadre = campionato.getListaSquadre();
+		Random sceltaSquadre = new Random();
+		List<Long> listaIdSquadreHome = new ArrayList<>();
+		List<Long> listaIdSquadreGuest = new ArrayList<>();
+		Partita partita = new Partita();
+		for (Squadra squadra : listaSquadre) {
+			Long idSquadra = squadra.getId();
+			listaIdSquadreHome.add(idSquadra);
+		}
+		for (Integer i = 0 ; i < 37 ; i++) {
+			for (int j = 0; j < listaIdSquadreHome.size(); j++) {
+				Long idSquadraHome = listaIdSquadreHome.get(sceltaSquadre.nextInt(listaIdSquadreHome.size()));
+				for(int h = 0; h < listaIdSquadreGuest.size(); h++) {
+					Long idSquadraGuest = listaIdSquadreGuest.get(sceltaSquadre.nextInt(listaIdSquadreGuest.size()));
+					if(idSquadraHome != idSquadraGuest) {
+						partita.setIdSquadraHome(idSquadraHome);
+						partita.setIdSquadraGuest(idSquadraGuest);
+						partita.setData(dataPartita);
+						dao.save(partita);
+					}
+					listaIdSquadreGuest.remove(idSquadraGuest);
+				}
+				listaIdSquadreHome.remove(idSquadraHome);
+			}
+		}
+		return partita;
+	}
+	
 	public Squadra risultatoPartita (Long idPartita) throws Exception {
 		Partita partita = dao.findById(idPartita).orElseThrow(() -> new Exception());
 		Squadra squadraHome = serviceSquadra.findOne(partita.getIdSquadraHome());

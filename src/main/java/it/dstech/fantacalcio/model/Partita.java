@@ -22,12 +22,9 @@ public class Partita extends Base {
 	private Long idSquadraGuest;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "listaPartite")
+	@JoinColumn(name = "id_campionato")
 	@JsonIgnore
 	private Campionato campionato;
-	
-	
-	
 	
 	//getters and setters
 	

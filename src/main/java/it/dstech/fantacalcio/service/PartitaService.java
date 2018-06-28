@@ -70,7 +70,7 @@ public class PartitaService {
 	public void scontroSettimanale(Long idCampionato, Long idSquadraHome, Long idSquadraGuest, LocalDate dataPartita) throws Exception {
 		Campionato campionato = service.findOne(idCampionato);	
 		Partita partita = new Partita();
-		partita.setData(campionato.getDataInizio());
+		partita.setData(dataPartita);
 		partita.setIdSquadraHome(idSquadraHome);
 		partita.setIdSquadraGuest(idSquadraGuest);
 		dao.save(partita);

@@ -32,7 +32,7 @@ public class Giocatore extends Base{
 	private Integer prezzo;
 	
 	@Column (name = "titolare", unique = false, nullable = false)
-	private boolean titolare;
+	private boolean titolare = false;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn

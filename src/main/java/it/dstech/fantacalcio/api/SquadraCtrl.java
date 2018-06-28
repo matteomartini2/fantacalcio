@@ -40,7 +40,7 @@ public class SquadraCtrl {
 	}
 	
 
-	@DeleteMapping("/deleteOne")
+	@DeleteMapping("/deleteOne/{id}")
 	public void delete(@PathVariable ("id") Long id) {
 		serviceSquadra.deleteOne(id);
 		

@@ -33,12 +33,12 @@ public class Squadra extends Base {
 	@JsonIgnore
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Campionato campionato;
 	
 	@Column (name = "punteggio", unique = false, nullable = false)
-	private Integer punteggio;
+	private Integer punteggio = 0;
 	
 	@Column (name = "data_registrazione", unique = false, nullable = false)
 	private final LocalDate dataRegistrazione = LocalDate.now();
@@ -52,9 +52,25 @@ public class Squadra extends Base {
 		this.dataRegistrazione = dataRegistrazione;
 	}
 	*/
+	
+	
 	public String getNome() {
 		return nome;
 	}
+
+
+
+	public Integer getPunteggio() {
+		return punteggio;
+	}
+
+
+
+	public void setPunteggio(Integer punteggio) {
+		this.punteggio = punteggio;
+	}
+
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -83,14 +99,6 @@ public class Squadra extends Base {
 
 	public void setModulo(Modulo modulo) {
 		this.modulo = modulo;
-	}
-
-	public Integer getPunteggio() {
-		return punteggio;
-	}
-
-	public void setPunteggio(Integer punteggio) {
-		this.punteggio = punteggio;
 	}
 
 	public Campionato getCampionato() {

@@ -57,26 +57,18 @@ public class PartitaService {
 		if(punteggioGiocatoriSquadraUno>punteggioGiocatoriSquadraDue) {
 			squadraUno.setPunteggio(squadraUno.getPunteggio() + 3);
 			serviceSquadra.salva(squadraUno);
-			//Long idCampionato = squadraUno.getCampionato().getId();
-			//serviceSquadra.create(squadraUno, idCampionato);
 			return squadraUno;
 			
 		}else if(punteggioGiocatoriSquadraDue>punteggioGiocatoriSquadraUno) {
 			squadraDue.setPunteggio(squadraDue.getPunteggio() + 3);
 			serviceSquadra.salva(squadraDue);
-			//Long idCampionato = squadraDue.getCampionato().getId();
-			//serviceSquadra.create(squadraDue, idCampionato);
 			return squadraDue;
 		}else {
 			squadraUno.setPunteggio(squadraUno.getPunteggio() + 1);
 			serviceSquadra.salva(squadraUno);
-			//Long idCampionato1 = squadraUno.getCampionato().getId();
-			//serviceSquadra.create(squadraUno, idCampionato1);
 			
 			squadraDue.setPunteggio(squadraDue.getPunteggio() + 1);
 			serviceSquadra.salva(squadraDue);
-			//Long idCampionato2 = squadraDue.getCampionato().getId();
-			//serviceSquadra.create(squadraDue, idCampionato2);
 			System.out.println("Pareggio");
 			return null;
 		}

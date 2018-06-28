@@ -57,6 +57,7 @@ public class PartitaService {
 		for (Squadra squadra : listaSquadre) {
 			Long idSquadra = squadra.getId();
 			listaIdSquadreHome.add(idSquadra);
+			listaIdSquadreGuest.add(idSquadra);
 		}
 		for (Integer i = 0 ; i < 37 ; i++) {
 			for (Long id1 : listaIdSquadreHome) {

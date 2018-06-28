@@ -95,7 +95,7 @@ public class SquadraService {
 		squadra.setNome(s.getNome());
 		squadra.setPunteggio(s.getPunteggio());
 		squadra.setUser(s.getUser());
-		squadra.setDataRegistrazione(s.getDataRegistrazione());
+		//squadra.setDataRegistrazione(s.getDataRegistrazione());
 		campionato.getListaSquadre().add(s);
 		return dao.save(squadra);
 

@@ -41,9 +41,9 @@ public class Squadra extends Base {
 	private Integer punteggio;
 	
 	@Column (name = "data_registrazione", unique = false, nullable = false)
-	private LocalDate dataRegistrazione;
+	private final LocalDate dataRegistrazione = LocalDate.now();
 	
-
+	/*
 	public LocalDate getDataRegistrazione() {
 		return dataRegistrazione;
 	}
@@ -51,7 +51,7 @@ public class Squadra extends Base {
 	public void setDataRegistrazione(LocalDate dataRegistrazione) {
 		this.dataRegistrazione = dataRegistrazione;
 	}
-
+	*/
 	public String getNome() {
 		return nome;
 	}

@@ -30,45 +30,45 @@ public class PartitaService {
 	//squadraUno (random) e squadraDue (random, meno squadraUno)
 	//n partite, in base a quante squadre abbiamo nel DB
 
-	public void primaPartita(Long squadraUno, Long squadraDue, Long idCampionato) throws Exception {
+	public void primaPartita(Long squadraHome, Long squadraGuest, Long idCampionato) throws Exception {
 		Campionato campionato = service.findOne(idCampionato);
 		List<Squadra> listaSquadre = campionato.getListaSquadre();
 		Partita partita = new Partita();
 		partita.setData(campionato.getDataInizio());
 		for(int i = 0; i< 38; i++) {
-			partita.setIdSquadraUno(squadraUno);
-			partita.setIdSquadraDue(squadraDue);
+			partita.setIdSquadraHome(squadraHome);
+			partita.setIdSquadraGuest(squadraGuest);
 			dao.save(partita);
 		}
 	}
 
 	public Squadra risultatoPartita (Long idPartita) throws Exception {
 		Partita partita = dao.findById(idPartita).orElseThrow(() -> new Exception());
-		Squadra squadraUno = serviceSquadra.findOne(partita.getIdSquadraUno());
-		Squadra squadraDue = serviceSquadra.findOne(partita.getIdSquadraDue());
+		Squadra squadraHome = serviceSquadra.findOne(partita.getIdSquadraHome());
+		Squadra squadraGuest = serviceSquadra.findOne(partita.getIdSquadraGuest());
 		int punteggioGiocatoriSquadraUno = 0;
 		int punteggioGiocatoriSquadraDue = 0;
-		for (Giocatore giocatore : squadraUno.getListaGiocatori()) {
+		for (Giocatore giocatore : squadraHome.getListaGiocatori()) {
 			punteggioGiocatoriSquadraUno = (int) (punteggioGiocatoriSquadraUno + giocatore.getPunteggioDellaSettimana());
 		}
-		for (Giocatore giocatore : squadraDue.getListaGiocatori()) {
+		for (Giocatore giocatore : squadraGuest.getListaGiocatori()) {
 			punteggioGiocatoriSquadraDue = (int) (punteggioGiocatoriSquadraDue + giocatore.getPunteggioDellaSettimana());
 		}
 		if(punteggioGiocatoriSquadraUno>punteggioGiocatoriSquadraDue) {
-			squadraUno.setPunteggio(squadraUno.getPunteggio() + 3);
-			serviceSquadra.salva(squadraUno);
-			return squadraUno;
+			squadraHome.setPunteggio(squadraHome.getPunteggio() + 3);
+			serviceSquadra.salva(squadraHome);
+			return squadraHome;
 			
 		}else if(punteggioGiocatoriSquadraDue>punteggioGiocatoriSquadraUno) {
-			squadraDue.setPunteggio(squadraDue.getPunteggio() + 3);
-			serviceSquadra.salva(squadraDue);
-			return squadraDue;
+			squadraGuest.setPunteggio(squadraGuest.getPunteggio() + 3);
+			serviceSquadra.salva(squadraGuest);
+			return squadraGuest;
 		}else {
-			squadraUno.setPunteggio(squadraUno.getPunteggio() + 1);
-			serviceSquadra.salva(squadraUno);
+			squadraHome.setPunteggio(squadraHome.getPunteggio() + 1);
+			serviceSquadra.salva(squadraHome);
 			
-			squadraDue.setPunteggio(squadraDue.getPunteggio() + 1);
-			serviceSquadra.salva(squadraDue);
+			squadraGuest.setPunteggio(squadraGuest.getPunteggio() + 1);
+			serviceSquadra.salva(squadraGuest);
 			System.out.println("Pareggio");
 			return null;
 		}

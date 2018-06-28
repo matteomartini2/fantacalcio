@@ -47,7 +47,7 @@ public class PartitaService {
 	}
 	*/
 	
-	public void scontriPartite(Long idCampionato , LocalDate dataPartita) throws Exception {
+	public Partita scontriPartite(Long idCampionato , LocalDate dataPartita) throws Exception {
 		Campionato campionato = service.findOne(idCampionato);
 		List<Squadra> listaSquadre = campionato.getListaSquadre();
 		Random sceltaSquadre = new Random();
@@ -59,9 +59,9 @@ public class PartitaService {
 			listaIdSquadreHome.add(idSquadra);
 		}
 		for (Integer i = 0 ; i < 37 ; i++) {
-			for (Long id1 : listaIdSquadreHome) {
+			for (int j = 0; j < listaIdSquadreHome.size(); j++) {
 				Long idSquadraHome = listaIdSquadreHome.get(sceltaSquadre.nextInt(listaIdSquadreHome.size()));
-				for(Long id2 : listaIdSquadreGuest) {
+				for(int h = 0; h < listaIdSquadreGuest.size(); h++) {
 					Long idSquadraGuest = listaIdSquadreGuest.get(sceltaSquadre.nextInt(listaIdSquadreGuest.size()));
 					if(idSquadraHome != idSquadraGuest) {
 						partita.setIdSquadraHome(idSquadraHome);
@@ -69,11 +69,12 @@ public class PartitaService {
 						partita.setData(dataPartita);
 						dao.save(partita);
 					}
+					listaIdSquadreGuest.remove(idSquadraGuest);
 				}
+				listaIdSquadreHome.remove(idSquadraHome);
 			}
 		}
-		
-		
+		return partita;
 	}
 	
 	public Squadra risultatoPartita (Long idPartita) throws Exception {

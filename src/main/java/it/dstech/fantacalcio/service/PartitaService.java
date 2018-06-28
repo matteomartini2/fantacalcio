@@ -1,6 +1,9 @@
 package it.dstech.fantacalcio.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,7 @@ public class PartitaService {
 	//squadraUno (random) e squadraDue (random, meno squadraUno)
 	//n partite, in base a quante squadre abbiamo nel DB
 
+	/*
 	public void primaPartita(Long squadraHome, Long squadraGuest, Long idCampionato) throws Exception {
 		Campionato campionato = service.findOne(idCampionato);
 		List<Squadra> listaSquadre = campionato.getListaSquadre();
@@ -41,7 +45,37 @@ public class PartitaService {
 			dao.save(partita);
 		}
 	}
-
+	*/
+	
+	public void scontriPartite(Long idCampionato , LocalDate dataPartita) throws Exception {
+		Campionato campionato = service.findOne(idCampionato);
+		List<Squadra> listaSquadre = campionato.getListaSquadre();
+		Random sceltaSquadre = new Random();
+		List<Long> listaIdSquadreHome = new ArrayList<>();
+		List<Long> listaIdSquadreGuest = new ArrayList<>();
+		Partita partita = new Partita();
+		for (Squadra squadra : listaSquadre) {
+			Long idSquadra = squadra.getId();
+			listaIdSquadreHome.add(idSquadra);
+		}
+		for (Integer i = 0 ; i < 37 ; i++) {
+			for (Long id1 : listaIdSquadreHome) {
+				Long idSquadraHome = listaIdSquadreHome.get(sceltaSquadre.nextInt(listaIdSquadreHome.size()));
+				for(Long id2 : listaIdSquadreGuest) {
+					Long idSquadraGuest = listaIdSquadreGuest.get(sceltaSquadre.nextInt(listaIdSquadreGuest.size()));
+					if(idSquadraHome != idSquadraGuest) {
+						partita.setIdSquadraHome(idSquadraHome);
+						partita.setIdSquadraGuest(idSquadraGuest);
+						partita.setData(dataPartita);
+						dao.save(partita);
+					}
+				}
+			}
+		}
+		
+		
+	}
+	
 	public Squadra risultatoPartita (Long idPartita) throws Exception {
 		Partita partita = dao.findById(idPartita).orElseThrow(() -> new Exception());
 		Squadra squadraHome = serviceSquadra.findOne(partita.getIdSquadraHome());

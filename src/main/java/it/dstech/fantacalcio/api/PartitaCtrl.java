@@ -16,12 +16,13 @@ public class PartitaCtrl {
 	@Autowired
 	private PartitaService service;
 
-	
+	/*
 	@RequestMapping(method = RequestMethod.POST, value = "primaPartita")
 	public void primaPartita(@RequestParam ("idS1")Long squadraUno,@RequestParam ("idS2") Long squadraDue, @RequestParam("idC")Long idCampionato) throws Exception {
 		 service.primaPartita(squadraUno, squadraDue, idCampionato);
 		
 	}
+	*/
 	
 	@RequestMapping(method = RequestMethod.GET, value = "risultatoPartita")
 	public Squadra risultatoPartita (@RequestParam("idP")Long idPartita) throws Exception {

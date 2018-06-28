@@ -28,7 +28,7 @@ public class User  extends Base{
 	private String password;
 	
 	@Column (name = "credito_da_spendere", nullable = false)
-	private Integer creditoDaSpendere;
+	private Integer creditoDaSpendere = 500;
 	
 	@Enumerated(EnumType.STRING)
 	private UserProfileType profileType;

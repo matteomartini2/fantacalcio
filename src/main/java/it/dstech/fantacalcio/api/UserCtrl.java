@@ -22,8 +22,10 @@ public class UserCtrl {
 
 	@Autowired
 	private UserService userService;
+	
 	@Autowired
 	private AuthService authService;
+	
 	@Autowired
 	private PasswordEncoder encoder;
 

@@ -1,7 +1,5 @@
 package it.dstech.fantacalcio.service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +77,7 @@ public class PartitaService {
 			serviceSquadra.salva(squadraDue);
 			//Long idCampionato2 = squadraDue.getCampionato().getId();
 			//serviceSquadra.create(squadraDue, idCampionato2);
+			System.out.println("Pareggio");
 			return null;
 		}
 	}

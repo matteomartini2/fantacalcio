@@ -27,8 +27,6 @@ public class GiocatoreService {
 	@Autowired
 	private CampionatoService serviceCampionato;
 
-	@Autowired
-	private SquadraService squadraService;
 
 	public Giocatore createOneADMIN(Giocatore giocatore, Long idCampionato) throws Exception {
 
@@ -122,7 +120,18 @@ public class GiocatoreService {
 		giocatoreDB.setTitolare(giocatoreInput.isTitolare());
 		return dao.save(giocatoreDB);
 	}
+	
+	//solo admin può fare questo
+	public Giocatore aggiornaPunteggioGiocatore(Long idGiocatore, Long nuovoPunteggioSettimana) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = service.findByUsername(auth.getName());
 
+		Giocatore giocatoreDB = findOne(idGiocatore);
+		giocatoreDB.setPunteggioDellaSettimana(nuovoPunteggioSettimana);
+		
+		return dao.save(giocatoreDB);
+	}
+	
 	public List<Giocatore> compraGiocatore (Long idGiocatore) throws Exception {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -131,7 +140,7 @@ public class GiocatoreService {
 		Squadra squadra = user.getSquadra();
 		List<Giocatore> listaDisponibili= squadra.getCampionato().getListaGiocatoriDisponibili();
 		List<Giocatore> listaGiocatoriSquadra = squadra.getListaGiocatori();
-		Giocatore giocatoreTemp=null;
+		Giocatore giocatoreTemp = null;
 		if (listaGiocatoriSquadra == null) listaGiocatoriSquadra = new ArrayList<>();
 		int counterIf = 0;
 		for (Giocatore giocatore : listaDisponibili) {
@@ -149,7 +158,7 @@ public class GiocatoreService {
 							user.setCreditoDaSpendere(user.getCreditoDaSpendere()-prezzoGiocatore);
 							squadra.setListaGiocatori(listaGiocatoriSquadra);
 							giocatore.setSquadra(squadra);
-							giocatoreTemp=giocatore;
+							giocatoreTemp = giocatore;
 							break;
 						}
 					}

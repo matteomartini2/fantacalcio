@@ -60,7 +60,6 @@ public class AstaCtrl {
 		try {
 			serviceAsta.aggiungiOfferta(idAsta, user.getId(), importo);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

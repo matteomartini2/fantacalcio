@@ -12,6 +12,7 @@ public class Asta extends Base{
 	
 	@JoinColumn(name="data_inizio")
 	LocalDateTime dataInizio;
+	
 	@JoinColumn(name="data_fine")
 	LocalDateTime dataFine;
 	
@@ -20,7 +21,7 @@ public class Asta extends Base{
 	
 	@JoinColumn
 	HashMap<Long,Double> offerte;
-	//Long è id di cha fatto offerta
+	//Long è id dell'user che ha fatto offerta
 	//Double valore offerta
 
 	public LocalDateTime getDataInizio() {
@@ -55,8 +56,4 @@ public class Asta extends Base{
 		this.offerte = offerte;
 	}
 
-	
-	
-	
-	
 }
